@@ -2,8 +2,9 @@ const UPDATE_USER_NAME = 'UPDATE_USER_NAME'
 const SET_REPOSITORIES = 'SET_REPOSITORIES'
 
 const initialState = {
-  username: 'lol',
-  list: []
+  username: '',
+  list: [],
+  readmd: {}
 }
 
 export default (state = initialState, action) => {

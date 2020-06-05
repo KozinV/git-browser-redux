@@ -10,6 +10,7 @@ import store, { history } from '../redux'
 import Home from '../components/home'
 import DummyView from '../components/dummy-view'
 import NotFound from '../components/404'
+import Readmd from '../components/readmd'
 
 import Startup from './startup'
 
@@ -74,6 +75,7 @@ const RootComponent = (props) => {
           <Switch>
             <Route exact path="/" component={() => <DummyView />} />
             <Route exact path="/:username" component={() => <Home />} />
+            <Route exact path="/:username/:repositoryname" component={() => <Readmd />} />
             <PrivateRoute exact path="/hidden-route" component={() => <DummyView />} />
             <Route component={() => <NotFound />} />
           </Switch>
