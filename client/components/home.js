@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
-import { updateUsername, setRepositories } from '../redux/reducers/repositories'
+import { setRepositories } from '../redux/reducers/repositories' // updateUsername,
 
 // import wave from '../assets/images/wave.jpg'
 
@@ -11,12 +11,12 @@ const Home = () => {
   const { username: userNameParams } = useParams()
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(setRepositories(username))
-  }, [username])
+  // useEffect(() => {
+  //   dispatch(updateUsername(userNameParams))
+  // }, [userNameParams])
 
   useEffect(() => {
-    dispatch(updateUsername(userNameParams))
+    dispatch(setRepositories(userNameParams))
   }, [userNameParams])
 
   return (

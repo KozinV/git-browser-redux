@@ -1,10 +1,13 @@
+import axios from 'axios'
+
 const UPDATE_USER_NAME = 'UPDATE_USER_NAME'
 const SET_REPOSITORIES = 'SET_REPOSITORIES'
+const READ_MD = 'READ_MD'
 
 const initialState = {
   username: '',
   list: [],
-  readmd: {}
+  readmd: ''
 }
 
 export default (state = initialState, action) => {
@@ -19,6 +22,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         list: action.list
+      }
+    }
+    case READ_MD: {
+      return {
+        ...state,
+        readmd: action.readmd
       }
     }
     default:
@@ -36,6 +45,16 @@ export function setRepositories(username) {
       .then((r) => r.json())
       .then((list) => {
         dispatch({ type: SET_REPOSITORIES, list })
+      })
+  }
+}
+
+export function getReadme(name, reponame) {
+  return function (dispatch) {
+    axios(`https://api.github.com/repos/${name}/${reponame}/readme`)
+      .then((it) => atob(it.data.content))
+      .then((readmd) => {
+        dispatch({ type: READ_MD, readmd })
       })
   }
 }
